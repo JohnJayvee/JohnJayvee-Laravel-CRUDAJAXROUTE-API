@@ -85,7 +85,7 @@ Run the application with the following command
 
 $ php artisan serve
 
-Remember to visit http://127.0.0.1:8000/users & http://127.0.0.1:8000/contacts
+Remember to visit http://127.0.0.1:8000/users & http://127.0.0.1:8000/contactss
 
 Built With
 Laravel - The PHP Framework For Web Artisans.
