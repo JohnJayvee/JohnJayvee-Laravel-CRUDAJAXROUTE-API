@@ -25,10 +25,14 @@ class UsersController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editUser">Edit</a>';
+                    $btn = '
+                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Show" class="show btn btn-warning btn-sm showUser">Show</a>
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteUser">Delete</a>';
+                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editUser">Edit</a>
 
+
+                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteUser">Delete</a>
+                    ';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -60,6 +64,12 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+    {
+        $users = DB::table('tbl_users')->find($id);
+        return response()->json($users);
+    }
+
+    public function show($id)
     {
         $users = DB::table('tbl_users')->find($id);
         return response()->json($users);

@@ -5,7 +5,7 @@
     <title>Laravel 8 Crud operation using ajax(Real Programmer)</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
@@ -30,6 +30,7 @@
         </table>
 
     </div>
+    {{-- edit modal --}}
     <div class="modal fade" id="ajaxModel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -60,6 +61,45 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {{-- show modal --}}
+
+    <div class="modal fade ajaxShowModel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title modelHeading"></h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-user-information">
+                        <tr>
+                            <td>Firstname</td>
+                            <td class="firstName"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Lastname: </td>
+                            <td class="lastName"></td>
+                        </tr>
+                    </table>
+
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Close
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -115,6 +155,7 @@
                 $('#modelHeading').html("Create New User");
                 $('#ajaxModel').modal('show');
             });
+            // Edit function
             $('body').on('click', '.editUser', function() {
                 var user_id = $(this).data('id');
                 $.get("{{ route('users.index') }}" + '/' + user_id + '/edit', function(data) {
@@ -124,6 +165,20 @@
                     $('#user_id').val(data.id);
                     $('#firstName').val(data.firstName);
                     $('#lastName').val(data.lastName);
+                })
+            });
+            // show
+            $('body').on('click', '.showUser', function() {
+                var user_id = $(this).data('id');
+                $.get("{{ route('users.index') }}" + '/' + user_id, function(data) {
+                    $('.modelHeading').html("Show User");
+                    $('.ajaxShowModel').modal('show');
+                    $(".btn").click(function() {
+                        $(".ajaxShowModel").modal('hide');
+                    });
+                    $('.firstName').text(data.firstName);
+                    $('.lastName').text(data.lastName);
+                    console.log(data.lastName);
                 })
             });
             $('#saveBtn').click(function(e) {
