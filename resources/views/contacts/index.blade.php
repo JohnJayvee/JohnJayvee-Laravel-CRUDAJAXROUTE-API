@@ -26,7 +26,7 @@
                             <td>{{ $contact->city }}</td>
                             <td>{{ $contact->country }}</td>
                             <td>
-                                <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-warning">Show</a>
                             </td>
                             <td>
                                 <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
