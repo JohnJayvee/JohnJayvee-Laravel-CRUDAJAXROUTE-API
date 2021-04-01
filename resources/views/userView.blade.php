@@ -41,7 +41,7 @@
                     <form id="userForm" name="userForm" class="form-horizontal">
                         <input type="hidden" name="user_id" id="user_id">
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Title</label>
+                            <label for="name" class="col-sm-2 control-label">Firstname</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="firstName" name="firstName"
                                     placeholder="Enter Title" value="" maxlength="50" required="">
@@ -49,10 +49,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Details</label>
+                            <label class="col-sm-2 control-label">Lastname</label>
                             <div class="col-sm-12">
-                                <textarea id="lastName" name="lastName" required="" placeholder="Enter Author"
-                                    class="form-control"></textarea>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                    placeholder="Enter Title" value="" maxlength="50" required="">
+                                {{-- <textarea id="lastName" name="lastName" required="" placeholder="Enter Author"
+                                    class="form-control"></textarea> --}}
                             </div>
                         </div>
 
