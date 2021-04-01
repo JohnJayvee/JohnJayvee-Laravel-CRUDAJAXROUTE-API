@@ -58,6 +58,17 @@ class UsersController extends Controller
         return response()->json(['success' => 'User saved successfully.']);
     }
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $users = DB::table('tbl_users')->find($id);
+        return response()->json($users);
+    }
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\usersModel  $user
@@ -68,13 +79,6 @@ class UsersController extends Controller
         $users = DB::table('tbl_users')->find($id);
         return response()->json($users);
     }
-
-    public function show($id)
-    {
-        $users = DB::table('tbl_users')->find($id);
-        return response()->json($users);
-    }
-
     /**
      * Remove the specified resource from storage.
      *
