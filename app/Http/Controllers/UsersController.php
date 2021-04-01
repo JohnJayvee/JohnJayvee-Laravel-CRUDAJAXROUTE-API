@@ -42,7 +42,7 @@ class UsersController extends Controller
         return view('userView', compact('users'));
     }
 
-    /***
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
