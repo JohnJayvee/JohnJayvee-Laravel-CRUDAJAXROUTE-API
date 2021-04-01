@@ -13,7 +13,7 @@
 
     <div class="container">
         <h1>Laravel 8 Crud with Ajax</h1>
-        <a class="btn btn-success" href="javascript:void(0)" id="createNewBook"> Create New Book</a>
+        <a class="btn btn-success" href="javascript:void(0)" id="createNewUser"> Create New User</a>
         <span id="success_message"></span>
 
         <table class="table table-bordered data-table" style="width: 100%">
@@ -37,8 +37,8 @@
                     <h4 class="modal-title" id="modelHeading"></h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bookForm" name="bookForm" class="form-horizontal">
-                        <input type="hidden" name="book_id" id="book_id">
+                    <form id="userForm" name="userForm" class="form-horizontal">
+                        <input type="hidden" name="user_id" id="user_id">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Title</label>
                             <div class="col-sm-12">
@@ -108,20 +108,20 @@
 
 
 
-            $('#createNewBook').click(function() {
-                $('#saveBtn').val("create-book");
-                $('#book_id').val('');
-                $('#bookForm').trigger("reset");
-                $('#modelHeading').html("Create New Book");
+            $('#createNewUser').click(function() {
+                $('#saveBtn').val("create-user");
+                $('#user_id').val('');
+                $('#userForm').trigger("reset");
+                $('#modelHeading').html("Create New User");
                 $('#ajaxModel').modal('show');
             });
-            $('body').on('click', '.editBook', function() {
-                var book_id = $(this).data('id');
-                $.get("{{ route('users.index') }}" + '/' + book_id + '/edit', function(data) {
-                    $('#modelHeading').html("Edit Book");
-                    $('#saveBtn').val("edit-book");
+            $('body').on('click', '.editUser', function() {
+                var user_id = $(this).data('id');
+                $.get("{{ route('users.index') }}" + '/' + user_id + '/edit', function(data) {
+                    $('#modelHeading').html("Edit User");
+                    $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
-                    $('#book_id').val(data.id);
+                    $('#user_id').val(data.id);
                     $('#firstName').val(data.firstName);
                     $('#lastName').val(data.lastName);
                 })
@@ -131,13 +131,13 @@
                 $(this).html('Save');
 
                 $.ajax({
-                    data: $('#bookForm').serialize(),
+                    data: $('#userForm').serialize(),
                     url: "{{ route('users.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
 
-                        $('#bookForm').trigger("reset");
+                        $('#userForm').trigger("reset");
                         $('#ajaxModel').modal('hide');
                         console.log('Success:', data);
                         table.draw();
@@ -151,12 +151,12 @@
             });
 
             // Delete function
-            $('body').on('click', '.deleteBook', function() {
-                var book_id = $(this).data("id");
+            $('body').on('click', '.deleteUser', function() {
+                var user_id = $(this).data("id");
                 if (confirm("Are You sure want to delete !")) {
                     $.ajax({
                         type: "DELETE",
-                        url: "{{ route('users.store') }}" + '/' + book_id,
+                        url: "{{ route('users.store') }}" + '/' + user_id,
                         error: function() {
                             console.log('Error:', data);
                             table.draw();

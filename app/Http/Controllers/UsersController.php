@@ -25,9 +25,9 @@ class UsersController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Edit</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editUser">Edit</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteUser">Delete</a>';
 
                     return $btn;
                 })
@@ -47,16 +47,16 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         usersModel::updateOrCreate(
-            ['id' => $request->book_id],
+            ['id' => $request->user_id],
             ['firstName' => $request->firstName, 'lastName' => $request->lastName]
         );
 
-        return response()->json(['success' => 'Book saved successfully.']);
+        return response()->json(['success' => 'User saved successfully.']);
     }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\usersModel  $book
+     * @param  \App\usersModel  $user
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,13 +68,13 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\usersModel  $book
+     * @param  \App\usersModel  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         DB::table('tbl_users')->delete($id);
 
-        return response()->json(['success' => 'Book deleted successfully.']);
+        return response()->json(['success' => 'User deleted successfully.']);
     }
 }
