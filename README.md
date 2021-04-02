@@ -67,8 +67,6 @@ Laravel 8 Ajax Crud
 
 A simple implementation of laravel 8 Ajax Crud.
 
-To follow along, this application has been documented as an article on siddharth shukla blog. you can checkout here.
-
 Set up
 
 To set up this project, first clone the repositiory
