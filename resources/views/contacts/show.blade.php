@@ -14,8 +14,7 @@
                 </div>
                 <br />
             @endif
-            <form method="post" action="{{ route('contacts.index') }}">
-                @method('GET')
+            <form method="post" action="{{ route('contact.index') }}">
                 @csrf
                 <table class="table table-user-information">
                     <tbody>

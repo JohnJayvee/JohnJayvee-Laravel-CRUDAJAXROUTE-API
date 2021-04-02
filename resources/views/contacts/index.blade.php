@@ -26,13 +26,13 @@
                             <td>{{ $contact->city }}</td>
                             <td>{{ $contact->country }}</td>
                             <td>
-                                <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-warning">Show</a>
+                                <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-warning">Show</a>
                             </td>
                             <td>
-                                <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <form action="{{ route('contacts.destroy', $contact->id) }}" method="post">
+                                <form method="post" action="{{ route('contact.destroy', $contact->id) }}" >
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Delete</button>
@@ -54,5 +54,5 @@
             @endif
         </div>
         <div>
-            <a style="margin: 19px;" href="{{ route('contacts.create') }}" class="btn btn-primary">New contact</a>
+            <a style="margin: 19px;" href="{{ route('contact.create') }}" class="btn btn-primary">New contact</a>
         </div>

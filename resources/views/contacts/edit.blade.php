@@ -14,7 +14,7 @@
         </div>
         <br />
         @endif
-        <form method="post" action="{{ route('contacts.update', $contact->id) }}">
+        <form method="post" action="{{ route('contact.update', $contact->id) }}">
             @method('PUT')
             @csrf
             <div class="form-group">

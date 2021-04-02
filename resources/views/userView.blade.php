@@ -123,7 +123,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: "{{ route('user.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -160,7 +160,7 @@
             // Edit function
             $('body').on('click', '.editUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ route('users.index') }}" + '/' + user_id + '/edit', function(data) {
+                $.get("{{ route('user.index') }}" + '/' + user_id + '/edit', function(data) {
                     $('#modelHeading').html("Edit User");
                     $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
@@ -172,7 +172,7 @@
             // show
             $('body').on('click', '.showUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ route('users.index') }}" + '/' + user_id, function(data) {
+                $.get("{{ route('user.index') }}" + '/' + user_id, function(data) {
                     $('.modelHeading').html("Show User");
                     $('.ajaxShowModel').modal('show');
                     $(".btn").click(function() {
@@ -189,7 +189,7 @@
 
                 $.ajax({
                     data: $('#userForm').serialize(),
-                    url: "{{ route('users.store') }}",
+                    url: "{{ route('user.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
@@ -213,7 +213,7 @@
                 if (confirm("Are You sure want to delete !")) {
                     $.ajax({
                         type: "DELETE",
-                        url: "{{ route('users.store') }}" + '/' + user_id,
+                        url: "{{ route('user.store') }}" + '/' + user_id,
                         error: function() {
                             console.log('Error:', data);
                             table.draw();
