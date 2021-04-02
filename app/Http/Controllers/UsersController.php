@@ -87,6 +87,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        // DB::table('tbl_users')->delete($id);
         DB::table('tbl_users')->delete($id);
 
         return response()->json(['success' => 'User deleted successfully.']);

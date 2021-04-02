@@ -123,7 +123,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: "{{ route('user.index') }}",
+                ajax: "{{ url('users') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -160,7 +160,7 @@
             // Edit function
             $('body').on('click', '.editUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ route('user.index') }}" + '/' + user_id + '/edit', function(data) {
+                $.get("{{ url('users') }}" + '/' + user_id + '/edit', function(data) {
                     $('#modelHeading').html("Edit User");
                     $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
@@ -172,7 +172,7 @@
             // show
             $('body').on('click', '.showUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ route('user.index') }}" + '/' + user_id, function(data) {
+                $.get("{{ url('users') }}" + '/' + user_id, function(data) {
                     $('.modelHeading').html("Show User");
                     $('.ajaxShowModel').modal('show');
                     $(".btn").click(function() {
@@ -189,7 +189,7 @@
 
                 $.ajax({
                     data: $('#userForm').serialize(),
-                    url: "{{ route('user.store') }}",
+                    url: "{{ url('/users/store/') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
@@ -210,10 +210,13 @@
             // Delete function
             $('body').on('click', '.deleteUser', function() {
                 var user_id = $(this).data("id");
+                var token = $("meta[name='csrf-token']").attr("content");
+
+
                 if (confirm("Are You sure want to delete !")) {
                     $.ajax({
+                        url: "{{ url('users') }}" + "/" + user_id,
                         type: "DELETE",
-                        url: "{{ route('user.store') }}" + '/' + user_id,
                         error: function() {
                             console.log('Error:', data);
                             table.draw();
@@ -222,6 +225,7 @@
                             console.log('Success:', data);
                             table.draw();
                         }
+
                     });
                 }
             });
