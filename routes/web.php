@@ -31,6 +31,7 @@ Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('user.de
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Contacts Routes

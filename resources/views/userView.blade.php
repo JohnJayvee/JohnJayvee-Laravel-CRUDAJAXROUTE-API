@@ -160,7 +160,9 @@
             // Edit function
             $('body').on('click', '.editUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ url('users') }}" + '/' + user_id + '/edit', function(data) {
+                var editUrl = '{{ route('user.edit', ':id') }}';
+                editUrl = editUrl.replace(':id', user_id);
+                $.get(editUrl, function(data) {
                     $('#modelHeading').html("Edit User");
                     $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
@@ -169,10 +171,12 @@
                     $('#lastName').val(data.lastName);
                 })
             });
-            // show
+            // show function
             $('body').on('click', '.showUser', function() {
                 var user_id = $(this).data('id');
-                $.get("{{ url('users') }}" + '/' + user_id, function(data) {
+                var showUrl = '{{ route('user.show', ':id') }}';
+                showUrl = showUrl.replace(':id', user_id);
+                $.get(showUrl, function(data) {
                     $('.modelHeading').html("Show User");
                     $('.ajaxShowModel').modal('show');
                     $(".btn").click(function() {
@@ -189,7 +193,7 @@
 
                 $.ajax({
                     data: $('#userForm').serialize(),
-                    url: "{{ url('/users/store/') }}",
+                    url: "{{ route('user.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
@@ -209,14 +213,16 @@
 
             // Delete function
             $('body').on('click', '.deleteUser', function() {
-                var user_id = $(this).data("id");
-                var token = $("meta[name='csrf-token']").attr("content");
+                var user_id = $(this).data('id');
+                var deleteUrl = '{{ route('user.destroy', ':id') }}';
+                deleteUrl = deleteUrl.replace(':id', user_id);
 
 
                 if (confirm("Are You sure want to delete !")) {
                     $.ajax({
-                        url: "{{ url('users') }}" + "/" + user_id,
                         type: "DELETE",
+                        url: deleteUrl,
+
                         error: function() {
                             console.log('Error:', data);
                             table.draw();
